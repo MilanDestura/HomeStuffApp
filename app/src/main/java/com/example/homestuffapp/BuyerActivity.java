@@ -42,6 +42,7 @@ public class BuyerActivity extends AppCompatActivity {
     boolean isFiltered = false;
     Bitmap myImg;
 
+    SearchView searchItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
