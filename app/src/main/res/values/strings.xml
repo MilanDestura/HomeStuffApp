@@ -3,4 +3,12 @@
     <string name="txt_img">ListView Image</string>
     <string name="btnAddToCart">Add To Cart</string>
     <string name="btnCancel">Cancel</string>
+    <string name="tvAppName">Home Stuff</string>
+    <string name="tvWelcome">Home Stuff</string>
+    <string name="tvEmail">Email</string>
+    <string name="tvPassword">Password</string>
+    <string name="tvSignUpRedirectText">Not yet registered? Sign up.</string>
+    <string name="btLogin">Login</string>
+    <string name="btSignUp">Sign Up</string>
+    <string name="tvLoginRedirectText">Already an user? Login</string>
 </resources>
