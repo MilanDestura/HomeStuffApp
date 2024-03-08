@@ -13,7 +13,22 @@
         android:theme="@style/HomeStuffAppThm"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".OrderDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShippingMethodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SellerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BuyerDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".BuyerActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

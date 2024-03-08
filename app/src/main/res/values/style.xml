@@ -9,4 +9,6 @@
         <item name="logo">@mipmap/ic_launcher</item>
         <item name="displayOptions">showHome|useLogo|showTitle</item>
     </style>
+
+
 </resources>

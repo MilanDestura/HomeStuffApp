@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-59dp">
+
+        <ListView
+            android:id="@+id/cartListView"
+            android:layout_width="match_parent"
+            android:layout_height="600dp">
+
+        </ListView>
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#0B0A0A"
+            android:textSize="34sp" />
+
+        <Button
+            android:id="@+id/btnBuyNow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4CAE50"
+            android:onClick="clickBuyNow"
+            android:text="Buy Now" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
