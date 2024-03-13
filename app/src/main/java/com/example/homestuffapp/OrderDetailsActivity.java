@@ -32,7 +32,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         // Fetch order details from the database
         Intent intent = getIntent();
-        int orderId = intent.getIntExtra("orderId", -1);
+        int orderId = intent.getIntExtra("orderId",-1);
         double totalAmount = intent.getDoubleExtra("totalAmount", 0.0);
         String shippingMethod = intent.getStringExtra("shippingMethod");
 
@@ -50,11 +50,12 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Cursor cursor = dbHelper.getOrderItems(orderId);
         if (cursor.moveToFirst()) {
             do {
-                String itemName = cursor.getString(1);
-                String itemDescription = cursor.getString(2);
-                double itemPrice = cursor.getDouble(4);
+                String itemName = cursor.getString(0);
+                String itemDescription = cursor.getString(1);
+                double itemPrice = cursor.getDouble(2);
                 // Add the item to the list
                 orderItemsList.add(new BuyerModel(itemName, itemDescription, "", itemPrice, null));
+
             } while (cursor.moveToNext());
         }
         cursor.close();

@@ -46,7 +46,7 @@ public class MenuActivity extends AppCompatActivity {
         cmdOrderDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent orderDetailsIntent = new Intent(MenuActivity.this, OrderDetailsActivity.class);
+                Intent orderDetailsIntent = new Intent(MenuActivity.this, OrderListActivity.class);
                 startActivity(orderDetailsIntent);
             }
         });

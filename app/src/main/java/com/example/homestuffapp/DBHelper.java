@@ -1,11 +1,13 @@
 package com.example.homestuffapp;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -63,6 +65,13 @@ public class DBHelper extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(orderId)};
         return db.rawQuery(query, selectionArgs);
     }
+
+    public Cursor getAllOrdersCursor() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM tblOrder", null);
+    }
+
+
 
     public boolean insertItemToDB(String name, String desc,String lType,Double price, Bitmap img){
         SQLiteDatabase DB = this.getWritableDatabase();

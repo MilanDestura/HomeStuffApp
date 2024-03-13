@@ -32,6 +32,7 @@ public class CustomAdapter extends ArrayAdapter<BuyerModel> {
         ImageView mImageView = mCustomView.findViewById(R.id.cartImg);
 
 
+        TextView itemId =  mCustomView.findViewById(R.id.tvCartItemId);
         TextView itemName =  mCustomView.findViewById(R.id.tvCartName);
         TextView itemDesc =  mCustomView.findViewById(R.id.tvCartDesc);
         TextView itemListing =  mCustomView.findViewById(R.id.tvCartListing);
@@ -39,9 +40,10 @@ public class CustomAdapter extends ArrayAdapter<BuyerModel> {
 
         mImageView.setImageBitmap(mItem.getImgId());
 
-        itemName.setText("Item:"+mItem.gettName());
-        itemDesc.setText("Desc:"+mItem.gettDesc());
-        itemListing.setText("Listing:"+mItem.gettListing());
+        itemId.setText("Item Id: "+String.valueOf(mItem.gettId()));
+        itemName.setText("Item: "+mItem.gettName());
+        itemDesc.setText("Desc: "+mItem.gettDesc());
+        itemListing.setText("Listing: "+mItem.gettListing());
         itemPrice.setText("Price: $"+mItem.gettPrice().toString());
 
         return  mCustomView;

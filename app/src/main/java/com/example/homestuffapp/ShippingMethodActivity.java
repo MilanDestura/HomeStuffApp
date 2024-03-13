@@ -67,7 +67,10 @@ public class ShippingMethodActivity extends AppCompatActivity {
             // Redirect to a confirmation page or display a success message
            // Intent intent = new Intent(this, OrderConfirmationActivity.class);
             //startActivity(intent);
+            setResult(RESULT_OK);
             Toast.makeText(ShippingMethodActivity.this,"Order placed.",Toast.LENGTH_SHORT).show();
+            finish();
+
         } else {
             // Handle order placement failure
             Toast.makeText(this, "Failed to place order", Toast.LENGTH_SHORT).show();

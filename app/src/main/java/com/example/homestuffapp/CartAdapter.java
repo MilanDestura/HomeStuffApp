@@ -44,7 +44,7 @@ public class CartAdapter extends ArrayAdapter<BuyerModel> {
         ImageView itemImage = listItem.findViewById(R.id.cartImg);
         Button deleteCartItem = listItem.findViewById(R.id.btnDeleteCartItem);
 
-        //itemId.setText(Integer.toString(currentItem.gettId()));
+        itemId.setText(Integer.toString(currentItem.gettId()));
         itemName.setText(currentItem.gettName());
         itemPrice.setText("$"+String.valueOf(currentItem.gettPrice()));
         itemImage.setImageBitmap(currentItem.getImgId());

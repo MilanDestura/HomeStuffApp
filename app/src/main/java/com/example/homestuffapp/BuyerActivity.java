@@ -129,6 +129,7 @@ public class BuyerActivity extends AppCompatActivity {
         }
         else{
             while(res.moveToNext()){
+                arrID.add(res.getInt(0));
                 arrName.add(res.getString(1));
                 arrDesc.add(res.getString(2));
                 arrListing.add(res.getString(3));
@@ -141,7 +142,7 @@ public class BuyerActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             for (int i=0;i< arrName.stream().count();i++){
-                BuyerModel listData = new BuyerModel(i,arrName.get(i),arrDesc.get(i),arrListing.get(i),arrPrice.get(i),arrImg.get(i));
+                BuyerModel listData = new BuyerModel(arrID.get(i),arrName.get(i),arrDesc.get(i),arrListing.get(i),arrPrice.get(i),arrImg.get(i));
                 dataArrayList.add(listData);
             }
         }

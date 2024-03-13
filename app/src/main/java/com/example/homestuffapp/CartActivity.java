@@ -1,5 +1,6 @@
 package com.example.homestuffapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -53,7 +54,16 @@ public class CartActivity extends AppCompatActivity {
     public void clickBuyNow(View mView){
         Intent shippingIntent=new Intent(CartActivity.this,ShippingMethodActivity.class);
         shippingIntent.putExtra("tPrice",total.toString());
-        startActivity(shippingIntent);
+        startActivityForResult(shippingIntent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            // Finish CartActivity
+            finish();
+        }
     }
 
 }
