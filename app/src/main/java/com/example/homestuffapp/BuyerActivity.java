@@ -32,6 +32,7 @@ public class BuyerActivity extends AppCompatActivity {
     ArrayList<String> arrName = new ArrayList<>();
     ArrayList<String> arrDesc= new ArrayList<>();
     ArrayList<String> arrListing = new ArrayList<>();
+    ArrayList<String> arrSeller = new ArrayList<>();
 
     ArrayList<Double> arrPrice= new ArrayList<>();
     ArrayList<Bitmap> arrImg = new ArrayList<>();
@@ -74,10 +75,10 @@ public class BuyerActivity extends AppCompatActivity {
                 }
                 Intent intent=new Intent(BuyerActivity.this, BuyerDetailsActivity.class);
                 intent.putExtra("extId",selectedItem.gettId());
-
                 intent.putExtra("extName",selectedItem.gettName());
                 intent.putExtra("extDesc",selectedItem.gettDesc());
                 intent.putExtra("extListing",selectedItem.gettListing());
+                intent.putExtra("extSeller",selectedItem.gettSeller());
                 intent.putExtra("extPrice",selectedItem.gettPrice());
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -134,7 +135,8 @@ public class BuyerActivity extends AppCompatActivity {
                 arrDesc.add(res.getString(2));
                 arrListing.add(res.getString(3));
                 arrPrice.add(res.getDouble(4));
-                byte[] imagebytes = res.getBlob(5);
+                arrSeller.add(res.getString(5));
+                byte[] imagebytes = res.getBlob(6);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imagebytes, 0, imagebytes.length);
                 arrImg.add(bitmap);
             }
@@ -142,7 +144,7 @@ public class BuyerActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             for (int i=0;i< arrName.stream().count();i++){
-                BuyerModel listData = new BuyerModel(arrID.get(i),arrName.get(i),arrDesc.get(i),arrListing.get(i),arrPrice.get(i),arrImg.get(i));
+                BuyerModel listData = new BuyerModel(arrID.get(i),arrName.get(i),arrDesc.get(i),arrListing.get(i),arrPrice.get(i),arrSeller.get(i),arrImg.get(i));
                 dataArrayList.add(listData);
             }
         }

@@ -37,9 +37,10 @@ public class OrderListActivity extends AppCompatActivity {
                 @SuppressLint("Range") int orderId = cursor.getInt(cursor.getColumnIndex("id"));
                 @SuppressLint("Range") String orderDate = cursor.getString(cursor.getColumnIndex("order_date"));
                 @SuppressLint("Range") double totalPrice = cursor.getDouble(cursor.getColumnIndex("total_price"));
+                @SuppressLint("Range") String shippingMethod = cursor.getString(cursor.getColumnIndex("shipping_method"));
 
                 // Create an OrderModel object and add it to the list
-                OrderModel order = new OrderModel(orderId, orderDate, totalPrice);
+                OrderModel order = new OrderModel(orderId, orderDate, totalPrice,shippingMethod);
                 orderList.add(order);
             } while (cursor.moveToNext());
 
@@ -66,6 +67,7 @@ public class OrderListActivity extends AppCompatActivity {
                 intent.putExtra("orderId", selectedOrder.getOrderId());
                 intent.putExtra("orderDate", selectedOrder.getOrderDate());
                 intent.putExtra("totalPrice", selectedOrder.getTotalPrice());
+                intent.putExtra("shippingMethod", selectedOrder.getShippingMethod());
                 startActivity(intent);
             }
         });

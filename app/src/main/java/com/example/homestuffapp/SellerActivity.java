@@ -30,6 +30,7 @@ public class SellerActivity extends AppCompatActivity {
 
     private DBHelper dbHelper;
     private String itemListingType;
+    String sellerName="Juan Dela Cruz";
 
     Bitmap mbitmap;
 
@@ -105,7 +106,7 @@ public class SellerActivity extends AppCompatActivity {
         String itemName = itemNameEditText.getText().toString().trim();
         String itemDescription = itemDescriptionEditText.getText().toString().trim();
         double itemPrice = Double.parseDouble(itemPriceEditText.getText().toString().trim());
-        dbHelper.insertItemToDB(itemName, itemDescription,itemListingType, itemPrice,mbitmap);
+        dbHelper.insertItemToDB(itemName, itemDescription,itemListingType, itemPrice,sellerName,mbitmap);
         Toast.makeText(this, "Item added successfully", Toast.LENGTH_SHORT).show();
     }
 }

@@ -26,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "description TEXT, " +
                 "listing_type TEXT,"+
                 "price DECIMAL," +
+                "seller TEXT," +
                 "image BLOB)");
 
         DB.execSQL("create Table tblOrder(" +
@@ -73,7 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-    public boolean insertItemToDB(String name, String desc,String lType,Double price, Bitmap img){
+    public boolean insertItemToDB(String name, String desc,String lType,Double price,String sName, Bitmap img){
         SQLiteDatabase DB = this.getWritableDatabase();
 
         ByteArrayOutputStream objByteOutputStream = new ByteArrayOutputStream();
@@ -87,6 +88,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("description",desc);
         contentValues.put("listing_type",lType);
         contentValues.put("price",price);
+        contentValues.put("seller",sName);
         contentValues.put("image",imgInBytes);
         long result = DB.insert("tblItem",null,contentValues);
         if(result==-1){

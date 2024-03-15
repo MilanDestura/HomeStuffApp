@@ -33,15 +33,18 @@ public class OrderDetailsActivity extends AppCompatActivity {
         // Fetch order details from the database
         Intent intent = getIntent();
         int orderId = intent.getIntExtra("orderId",-1);
-        double totalAmount = intent.getDoubleExtra("totalAmount", 0.0);
+        double totalAmount = intent.getDoubleExtra("totalPrice", 0.0);
         String shippingMethod = intent.getStringExtra("shippingMethod");
+        String oDate = intent.getStringExtra("orderDate");
 
         // Display order details
         TextView orderIdTextView = findViewById(R.id.orderIdTextView);
         TextView totalAmountTextView = findViewById(R.id.orderTotalTextView);
+        TextView dateOrdered = findViewById(R.id.orderDateTextView);
         TextView shippingMethodTextView = findViewById(R.id.shippingMethodTextView);
 
         orderIdTextView.setText("Order ID: " + orderId);
+        dateOrdered.setText(oDate);
         totalAmountTextView.setText("Total Amount: $" + totalAmount);
         shippingMethodTextView.setText("Shipping Method: " + shippingMethod);
 

@@ -27,6 +27,7 @@ public class BuyerDetailsActivity extends AppCompatActivity {
             String strName = intent.getStringExtra("extName");
             String strDesc = intent.getStringExtra("extDesc");
             String strListing = intent.getStringExtra("extListing");
+            String strSeller = intent.getStringExtra("extSeller");
             Double dblPrice = intent.getDoubleExtra("extPrice",0.0);
 
             byte[] byteArray = intent.getByteArrayExtra("img");
@@ -36,6 +37,7 @@ public class BuyerDetailsActivity extends AppCompatActivity {
             binding.tvItemName.setText(strName);
             binding.tvItemDesc.setText(strDesc);
             binding.tvItemListing.setText(strListing);
+            binding.tvItemSeller.setText(strSeller);
             binding.tvItemPrice.setText("$"+dblPrice.toString());
 
             itemClicked = new BuyerModel(intId,strName, strDesc, strListing,dblPrice, bitmap);

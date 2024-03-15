@@ -34,7 +34,7 @@ public class ShippingMethodActivity extends AppCompatActivity {
 
         rdbDelivery= findViewById(R.id.rdbDelivery);
         rdbPickup = findViewById(R.id.rdbPickup);
-        tvTotalAmount.setText(totalAmount);
+        tvTotalAmount.setText("$ "+totalAmount);
         dbHelper = new DBHelper(this);
     }
 

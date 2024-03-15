@@ -10,6 +10,7 @@ public class BuyerModel {
     private String tDesc;
     private String tListing;
     private Double tPrice;
+    private String tSeller;
     private Bitmap imgId;
 
     private boolean inCart;
@@ -29,6 +30,9 @@ public class BuyerModel {
 
     public Double gettPrice() {
         return tPrice;
+    }
+    public String gettSeller() {
+        return tSeller;
     }
 
     public Bitmap getImgId() {
@@ -52,12 +56,17 @@ public class BuyerModel {
         this.imgId=tId;
     }
 
-    public boolean isInCart() {
-        return inCart;
+    public BuyerModel(int t0,String t1, String t2,String t3, Double t4, String t5,Bitmap tId){
+        this.tId =t0;
+        this.tName = t1;
+        this.tDesc = t2;
+        this.tListing = t3;
+        this.tPrice = t4;
+        this.tSeller = t5;
+        this.imgId=tId;
     }
 
-    public void setInCart(boolean inCart) {
-        this.inCart = inCart;
-    }
+
+
 
 }

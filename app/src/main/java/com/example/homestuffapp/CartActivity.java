@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.homestuffapp.databinding.ActivityBuyerBinding;
 import com.example.homestuffapp.databinding.ActivityCartBinding;
@@ -36,7 +37,10 @@ public class CartActivity extends AppCompatActivity {
             cartManager = CartManager.getInstance();
             cartItems = cartManager.getCartItems();
 
-
+            if(cartItems.isEmpty()){
+                Toast.makeText(CartActivity.this,"No Items in Cart!",Toast.LENGTH_SHORT).show();
+                finish();
+            }
             cartListView = findViewById(R.id.cartListView);
             cartAdapter = new CartAdapter(this, cartItems);
             cartListView.setAdapter(cartAdapter);

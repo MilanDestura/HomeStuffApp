@@ -5,10 +5,13 @@ public class OrderModel {
     private String orderDate;
     private double totalPrice;
 
-    public OrderModel(int orderId, String orderDate, double totalPrice) {
+    private String shippingMethod;
+
+    public OrderModel(int orderId, String orderDate, double totalPrice, String shippingMethod) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
+        this.shippingMethod = shippingMethod;
     }
 
     public int getOrderId() {
@@ -21,6 +24,9 @@ public class OrderModel {
 
     public double getTotalPrice() {
         return totalPrice;
+    }
+    public String getShippingMethod() {
+        return shippingMethod;
     }
 }
 
