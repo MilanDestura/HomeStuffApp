@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MenuActivity extends AppCompatActivity {
 
-    Button cmdBuyer,cmdSeller,cmdCart,cmdOrderDetails;
+    Button cmdBuyer,cmdSeller,cmdCart,cmdOrderDetails,cmdExit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +18,7 @@ public class MenuActivity extends AppCompatActivity {
         cmdSeller = findViewById(R.id.btnSeller);
         cmdCart = findViewById(R.id.btnCart);
         cmdOrderDetails = findViewById(R.id.btnOrderDetails);
-
+        cmdExit = findViewById(R.id.btnExit);
         cmdBuyer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +48,13 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent orderDetailsIntent = new Intent(MenuActivity.this, OrderListActivity.class);
                 startActivity(orderDetailsIntent);
+            }
+        });
+
+        cmdExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

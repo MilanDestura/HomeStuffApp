@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-
     byte[] imgInBytes;
     public DBHelper(Context context){
         super(context,"homestuffapp.db",null,2);
@@ -122,7 +121,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 return false; // Failed to insert order item
             }
         }
-
         return true;
     }
 

@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         TextView totalAmountTextView = findViewById(R.id.orderTotalTextView);
         TextView dateOrdered = findViewById(R.id.orderDateTextView);
         TextView shippingMethodTextView = findViewById(R.id.shippingMethodTextView);
+        Button editOrder = findViewById(R.id.btnEditOrder);
 
         orderIdTextView.setText("Order ID: " + orderId);
         dateOrdered.setText(oDate);
@@ -58,7 +60,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 double itemPrice = cursor.getDouble(2);
                 // Add the item to the list
                 orderItemsList.add(new BuyerModel(itemName, itemDescription, "", itemPrice, null));
-
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -66,6 +67,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
         // Set up the adapter for the ListView
         orderItemsAdapter = new OrderItemsAdapter(this, orderItemsList);
         orderItemsListView.setAdapter(orderItemsAdapter);
+
+
     }
+
 
 }
