@@ -16,4 +16,5 @@
     <string name="tvPhone">Phone</string>
     <string name="tvAddress">Address</string>
     <string name="tvUserName">Username</string>
+    <string name="tvUserNameLog">Username</string>
 </resources>

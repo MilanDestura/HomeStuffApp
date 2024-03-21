@@ -102,6 +102,24 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public  boolean checkUsername(String username){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("select * from signupUsers where username = ?", new String[]{username});
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public  boolean checkUser(String username, String password){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("select * from signupUsers where username = ?", new String[]{username, password});
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
     public boolean insertItemToDB(String name, String desc,String lType,Double price,String sName, Bitmap img){
         SQLiteDatabase DB = this.getWritableDatabase();
 
