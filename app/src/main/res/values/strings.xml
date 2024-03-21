@@ -17,4 +17,5 @@
     <string name="tvAddress">Address</string>
     <string name="tvUserName">Username</string>
     <string name="tvUserNameLog">Username</string>
+    <string name="tvConfirmPsw">Confirm password</string>
 </resources>

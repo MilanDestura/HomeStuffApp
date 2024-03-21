@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private EditText signupFirstName, signupLastName, signupEmail, signupPhone, signupAddress, signupUsername, signupPassword;
+    private EditText signupFirstName, signupLastName, signupEmail, signupPhone, signupAddress, signupUsername, signupPassword, confirmPassword;
     private Button signupButton;
     private TextView loginRedirectText;
 
@@ -28,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
         signupAddress = findViewById(R.id.tvAddress);
         signupUsername = findViewById(R.id.tvUserName);
         signupPassword = findViewById(R.id.tvPassword);
+        confirmPassword = findViewById(R.id.tvConfirmPsw);
         signupButton = findViewById(R.id.btSignUp);
         loginRedirectText = findViewById(R.id.tvLoginRedirectText);
 
@@ -41,35 +42,40 @@ public class SignUpActivity extends AppCompatActivity {
                 String username = signupUsername.getText().toString().trim();
                 String email = signupEmail.getText().toString().trim();
                 String pass = signupPassword.getText().toString().trim();
+                String rePsw = confirmPassword.getText().toString().trim();
 
                 // Basic validation checks
                 if (firstName.isEmpty()) {
                     signupFirstName.setError("First name cannot be empty");
-                    return; // Return early if validation fails
+                    return;
                 }
                 if (lastName.isEmpty()) {
                     signupLastName.setError("Last name cannot be empty");
-                    return; // Return early if validation fails
+                    return;
                 }
                 if (email.isEmpty()) {
                     signupEmail.setError("Email cannot be empty");
-                    return; // Return early if validation fails
+                    return;
                 }
                 if (phone.isEmpty()) {
                     signupPhone.setError("Phone cannot be empty");
-                    return; // Return early if validation fails
+                    return;
                 }
                 if (address.isEmpty()) {
                     signupAddress.setError("Address cannot be empty");
-                    return; // Return early if validation fails
+                    return;
                 }
                 if (username.isEmpty()) {
                     signupUsername.setError("Username cannot be empty");
-                    return; // Return early if validation fails
+                    return;
                 }
                 if (pass.isEmpty()) {
                     signupPassword.setError("Password cannot be empty");
-                    return; // Return early if validation fails
+                    return;
+                }
+                if (rePsw.isEmpty()) {
+                    signupPassword.setError("Confirm password cannot be empty");
+                    return;
                 }
 
                 // Simulate successful sign-up

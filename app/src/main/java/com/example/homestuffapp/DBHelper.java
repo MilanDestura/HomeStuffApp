@@ -82,7 +82,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean signupUser(String firstName, String lastName, String email, String phone, String address,
-                              String userName, String password){
+                              String userName, String password, String confirmPassword){
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -93,6 +93,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("address", address);
         contentValues.put("userName", userName);
         contentValues.put("password", password);
+        contentValues.put("confirmPassword", confirmPassword);
         long result = DB.insert("tblUsers", null, contentValues);
         if(result==-1){
             return false;
