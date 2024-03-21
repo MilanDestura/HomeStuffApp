@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-
     byte[] imgInBytes;
     public DBHelper(Context context){
         super(context,"homestuffapp.db",null,1);
