@@ -29,6 +29,7 @@ public class SellerActivity extends AppCompatActivity {
     private Uri imageUri;
 
     private DBHelper dbHelper;
+    private double itemPrice= 0.0;
     private String itemListingType;
     String sellerName="Juan Dela Cruz";
 
@@ -73,10 +74,11 @@ public class SellerActivity extends AppCompatActivity {
 
         if (rdForSale.isChecked()) {
             itemListingType = "For Sale";
+            itemPrice=Double.parseDouble(itemPriceEditText.getText().toString().trim());
         }
         if (rdForSharing.isChecked()) {
             itemListingType = "For Sharing";
-
+            itemPrice = 0.0;
         }
 
     }
@@ -105,7 +107,6 @@ public class SellerActivity extends AppCompatActivity {
     private void addItemToDatabase() {
         String itemName = itemNameEditText.getText().toString().trim();
         String itemDescription = itemDescriptionEditText.getText().toString().trim();
-        double itemPrice = Double.parseDouble(itemPriceEditText.getText().toString().trim());
         dbHelper.insertItemToDB(itemName, itemDescription,itemListingType, itemPrice,sellerName,mbitmap);
         Toast.makeText(this, "Item added successfully", Toast.LENGTH_SHORT).show();
     }

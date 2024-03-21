@@ -38,6 +38,10 @@ public class ShippingMethodActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this);
     }
 
+    public void cancelOrder(View view){
+        finish();
+    }
+
     public void placeOrder(View view) {
 
         if(rdbDelivery.isChecked()){

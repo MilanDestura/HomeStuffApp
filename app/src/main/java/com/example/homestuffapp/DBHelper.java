@@ -122,7 +122,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 return false; // Failed to insert order item
             }
         }
-
         return true;
     }
 

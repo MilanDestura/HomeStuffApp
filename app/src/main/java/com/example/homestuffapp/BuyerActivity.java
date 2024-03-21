@@ -43,8 +43,6 @@ public class BuyerActivity extends AppCompatActivity {
     boolean isFiltered = false;
     Bitmap myImg;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +104,11 @@ public class BuyerActivity extends AppCompatActivity {
                 filteredDataArrayList.clear();
 
                 for (BuyerModel item : dataArrayList) {
-                    if (item.gettName().toLowerCase().contains(userInput) || item.gettDesc().toLowerCase().contains(userInput)) {
+                    if (item.gettName().toLowerCase().contains(userInput) ||
+                            item.gettDesc().toLowerCase().contains(userInput)||
+                            item.gettListing().toLowerCase().contains(userInput)||
+                            item.gettPrice().toString().toLowerCase().contains(userInput)
+                    ) {
                         filteredDataArrayList.add(item);
                     }
                 }
@@ -118,8 +120,6 @@ public class BuyerActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
 
     public void getAllItems(){
@@ -149,5 +149,4 @@ public class BuyerActivity extends AppCompatActivity {
             }
         }
     }
-
 }
