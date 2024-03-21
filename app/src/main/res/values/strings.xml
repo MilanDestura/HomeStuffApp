@@ -11,4 +11,9 @@
     <string name="btLogin">Login</string>
     <string name="btSignUp">Sign Up</string>
     <string name="tvLoginRedirectText">Already an user? Login</string>
+    <string name="tvFirstName">First Name</string>
+    <string name="tvLastName">Last Name</string>
+    <string name="tvPhone">Phone</string>
+    <string name="tvAddress">Address</string>
+    <string name="tvUserName">Username</string>
 </resources>

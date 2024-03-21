@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     byte[] imgInBytes;
     public DBHelper(Context context){
-        super(context,"homestuffapp.db",null,1);
+        super(context,"homestuffapp.db",null,2);
     }
 
     @Override
