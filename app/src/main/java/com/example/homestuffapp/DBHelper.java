@@ -16,11 +16,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
     byte[] imgInBytes;
     public DBHelper(Context context){
-        super(context,"homestuffapp.db",null,1);
+        super(context,"homestuffapp.db",null,2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
+        DB.execSQL("create table tblUsers(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "first_name TEXT, " +
+                "last_name TEXT, " +
+                "email TEXT, " +
+                "phone TEXT, " +
+                "address TEXT, " +
+                "username TEXT, " +
+                "password TEXT)");
+
         DB.execSQL("create Table tblItem(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT , " +
                 "description TEXT, " +
                 "listing_type TEXT,"+
@@ -71,7 +81,45 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM tblOrder", null);
     }
 
+    public boolean signupUser(String firstName, String lastName, String email, String phone, String address,
+                              String userName, String password, String confirmPassword){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
 
+        contentValues.put("firstName", firstName);
+        contentValues.put("lastName", lastName);
+        contentValues.put("email", email);
+        contentValues.put("phone", phone);
+        contentValues.put("address", address);
+        contentValues.put("userName", userName);
+        contentValues.put("password", password);
+        contentValues.put("confirmPassword", confirmPassword);
+        long result = DB.insert("tblUsers", null, contentValues);
+        if(result==-1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public  boolean checkUsername(String username){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("select * from signupUsers where username = ?", new String[]{username});
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public  boolean checkUser(String username, String password){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("select * from signupUsers where username = ?", new String[]{username, password});
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
 
     public boolean insertItemToDB(String name, String desc,String lType,Double price,String sName, Bitmap img){
         SQLiteDatabase DB = this.getWritableDatabase();

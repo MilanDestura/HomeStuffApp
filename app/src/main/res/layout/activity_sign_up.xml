@@ -20,31 +20,56 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="573dp"
             android:layout_gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@drawable/custom_edittext">
+            android:background="@drawable/custom_edittext"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-            <TextView
-                android:id="@+id/tvAppName"
+            <EditText
+                android:id="@+id/tvFirstName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tvAppName"
-                android:textAlignment="center"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_edittext"
+                android:drawableStart="@drawable/person_24px"
+                android:drawablePadding="8dp"
+                android:gravity=""
+                android:hint="@string/tvFirstName"
+                android:inputType="text|textEmailAddress"
+                android:padding="8dp"
                 android:textColor="@color/lavender"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,TextContrastCheck" />
+                android:textColorHint="#5C6BC0"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/tvLastName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_edittext"
+                android:drawableStart="@drawable/person_24px"
+                android:drawablePadding="8dp"
+                android:gravity=""
+                android:hint="@string/tvLastName"
+                android:inputType="text|textEmailAddress"
+                android:padding="8dp"
+                android:textColor="@color/lavender"
+                android:textColorHint="#5C6BC0"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
             <EditText
                 android:id="@+id/tvEmail"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
                 android:autofillHints=""
                 android:background="@drawable/custom_edittext"
-                android:drawableStart="@drawable/baseline_account_box_24"
+                android:drawableStart="@drawable/mail_24px"
                 android:drawablePadding="8dp"
                 android:gravity=""
                 android:hint="@string/tvEmail"
@@ -53,16 +78,70 @@
                 android:textColor="@color/lavender"
                 android:textColorHint="#5C6BC0"
                 android:textSize="18sp"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/tvPhone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_edittext"
+                android:drawableStart="@drawable/contact_phone_24px"
+                android:drawablePadding="8dp"
+                android:gravity=""
+                android:hint="@string/tvPhone"
+                android:inputType="phone"
+                android:padding="8dp"
+                android:textColor="@color/lavender"
+                android:textColorHint="#5C6BC0"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/tvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_edittext"
+                android:drawableStart="@drawable/family_home_24px"
+                android:drawablePadding="8dp"
+                android:gravity=""
+                android:hint="@string/tvAddress"
+                android:inputType="text|textEmailAddress"
+                android:padding="8dp"
+                android:textColor="@color/lavender"
+                android:textColorHint="#5C6BC0"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/tvUserName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_edittext"
+                android:drawableStart="@drawable/id_card_24px"
+                android:drawablePadding="8dp"
+                android:gravity=""
+                android:hint="@string/tvUserName"
+                android:inputType="text|textEmailAddress"
+                android:padding="8dp"
+                android:textColor="@color/lavender"
+                android:textColorHint="#5C6BC0"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
             <EditText
                 android:id="@+id/tvPassword"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
                 android:autofillHints=""
                 android:background="@drawable/custom_edittext"
-                android:drawableStart="@drawable/baseline_lock_24"
+                android:drawableStart="@drawable/password_24_px"
                 android:drawablePadding="8dp"
                 android:gravity=""
                 android:hint="@string/tvPassword"
@@ -71,13 +150,31 @@
                 android:textColor="@color/lavender"
                 android:textColorHint="#5C6BC0"
                 android:textSize="18sp"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/tvConfirmPsw"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_edittext"
+                android:drawableStart="@drawable/password_24_px"
+                android:drawablePadding="8dp"
+                android:gravity=""
+                android:hint="@string/tvConfirmPsw"
+                android:inputType="text|textPassword"
+                android:padding="8dp"
+                android:textColor="@color/lavender"
+                android:textColorHint="#5C6BC0"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
             <Button
                 android:id="@+id/btSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/lavender"
                 android:backgroundTint="@color/lavender"
                 android:gravity="center"
@@ -86,7 +183,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:cornerRadius="20dp"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
             <TextView
                 android:id="@+id/tvLoginRedirectText"

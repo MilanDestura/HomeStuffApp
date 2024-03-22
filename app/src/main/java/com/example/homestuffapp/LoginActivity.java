@@ -12,7 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText loginEmail, loginPassword;
+    private DBHelper dbHelper;
+    private EditText loginUsername, loginPassword;
     private Button loginButton;
     private TextView signupRedirectText;
 
@@ -20,8 +21,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        dbHelper = new DBHelper(this);
 
-        loginEmail = findViewById(R.id.tvEmail);
+        loginUsername = findViewById(R.id.tvUserNameLog);
         loginPassword = findViewById(R.id.tvPassword);
         loginButton = findViewById(R.id.btLogin);
         signupRedirectText = findViewById(R.id.tvSignupRedirectText);
@@ -29,21 +31,13 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = loginEmail.getText().toString();
-                String pass = loginPassword.getText().toString();
-
-                if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    if (!pass.isEmpty()) {
-                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MenuActivity.class));
-                        finish();
-                    } else {
-                        loginPassword.setError("Password cannot be empty");
-                    }
-                } else if (email.isEmpty()) {
-                    loginEmail.setError("Email cannot be empty");
-                } else {
-                    loginEmail.setError("Please enter a valid email");
+                boolean isLoggedId = dbHelper.checkUser(loginUsername.getText().toString().trim(), loginPassword.getText().toString().trim());
+                if (isLoggedId){
+                     Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                     startActivity(intent);
+                }
+                else {
+                    Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
                 }
             }
         });
