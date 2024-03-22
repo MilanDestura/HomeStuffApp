@@ -58,7 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getOrderItems(int orderId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT tblItem.name, tblItem.description, tblItem.price " +
+        String query = "SELECT tblItem.id,tblItem.name, tblItem.description, tblItem.price " +
                 "FROM tblOrderItem " +
                 "JOIN tblItem ON tblOrderItem.item_id = tblItem.id " +
                 "WHERE tblOrderItem.order_id = ?";
@@ -124,6 +124,14 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    public void deleteItemFromOrder(BuyerModel item,int OrdId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Assuming you have a table named "OrderItem" with columns "order_id" and "item_id"
+        // You need to adjust this part based on your database schema
+        db.delete("tblOrderItem", "order_id = ? AND item_id = ?",
+                new String[] { String.valueOf(OrdId), String.valueOf(item.gettId()) });
+        db.close();
+    }
 
 }
 

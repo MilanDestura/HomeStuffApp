@@ -39,13 +39,7 @@ public class BuyerModel {
         return imgId;
     }
 
-    public BuyerModel(String t1, String t2,String t3, Double t4, Bitmap tId){
-        this.tName = t1;
-        this.tDesc = t2;
-        this.tListing = t3;
-        this.tPrice = t4;
-        this.imgId=tId;
-    }
+
 
     public BuyerModel(int t0,String t1, String t2,String t3, Double t4, Bitmap tId){
         this.tId =t0;

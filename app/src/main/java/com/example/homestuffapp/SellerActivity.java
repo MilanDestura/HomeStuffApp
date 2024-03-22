@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -31,7 +32,7 @@ public class SellerActivity extends AppCompatActivity {
     private DBHelper dbHelper;
     private double itemPrice= 0.0;
     private String itemListingType;
-    String sellerName="Juan Dela Cruz";
+    String sellerName="Seller.Id";
 
     Bitmap mbitmap;
 
@@ -44,7 +45,7 @@ public class SellerActivity extends AppCompatActivity {
         itemDescriptionEditText = findViewById(R.id.itemDescriptionEditText);
         itemPriceEditText = findViewById(R.id.itemPriceEditText);
         itemImageView = findViewById(R.id.itemImageView);
-
+        mbitmap = BitmapFactory.decodeResource(getResources(), R.drawable.homestufflogo);
         dbHelper = new DBHelper(this);
 
 

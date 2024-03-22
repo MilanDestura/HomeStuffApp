@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
     <Button
         android:id="@+id/btnEditOrder"
         android:layout_width="match_parent"
@@ -16,29 +23,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orderTotalTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.053" />
 
     <Button
         android:id="@+id/btnDetailsOrderCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:backgroundTint="#FD1616"
-        android:text="@string/btnCancel"
+        android:text="CANCEL ORDER"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditOrder" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEditOrder"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnOrderDetailsBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:backgroundTint="#CCFFFF"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditOrder"
+        app:layout_constraintVertical_bias="0.807" />
 
     <ListView
         android:id="@+id/orderItemsListView"
-        android:layout_width="378dp"
-        android:layout_height="336dp"
+        android:layout_width="367dp"
+        android:layout_height="300dp"
         android:layout_below="@id/shippingMethodTextView"
         android:layout_marginBottom="92dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.636"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shippingMethodTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/shippingMethodTextView"
+        app:layout_constraintVertical_bias="0.196" />
 
     <TextView
         android:id="@+id/orderIdTextView"
