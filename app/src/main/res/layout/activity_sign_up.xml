@@ -123,7 +123,7 @@
                 android:layout_marginTop="10dp"
                 android:autofillHints=""
                 android:background="@drawable/custom_edittext"
-                android:drawableStart="@drawable/baseline_account_box_24"
+                android:drawableStart="@drawable/id_card_24px"
                 android:drawablePadding="8dp"
                 android:gravity=""
                 android:hint="@string/tvUserName"
