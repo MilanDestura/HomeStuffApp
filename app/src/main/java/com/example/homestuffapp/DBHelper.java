@@ -16,7 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     byte[] imgInBytes;
     public DBHelper(Context context){
-        super(context,"homestuffapp.db",null,2);
+        super(context,"homestuffapp.db",null,1);
     }
 
     @Override
@@ -42,7 +42,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "order_date TEXT, " +
                 "total_price DECIMAL, " +
-                "shipping_method TEXT)");
+                "shipping_method TEXT,"+
+                "order_status TEXT)");
 
         DB.execSQL("create Table tblOrderItem(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -78,7 +79,29 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getAllOrdersCursor() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM tblOrder", null);
+        return db.rawQuery("SELECT * FROM tblOrder where order_status ='Placed' ", null);
+    }
+
+    public boolean updateOrderStatus(int orderId, String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("order_status", status);
+        String whereClause = "id=?";
+        String[] whereArgs = {String.valueOf(orderId)};
+        int rowsAffected = db.update("tblOrder", values, whereClause, whereArgs);
+        return rowsAffected > 0;
+    }
+
+    public void updateShippingMethod(int orderId,String selectedShippingMethod) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        String whereClause = "id=?";
+        String[] whereArgs = {String.valueOf(orderId)};
+        values.put("shipping_method", selectedShippingMethod);
+
+        // Update the shipping method in the database
+        int rowsAffected = db.update("tblOrder", values, whereClause, whereArgs);
+        db.close();
     }
 
     public boolean signupUser(String firstName, String lastName, String email, String phone, String address,
@@ -146,12 +169,13 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean placeOrder(String orderDate, double totalPrice,String shippingMethod, ArrayList<BuyerModel> items) {
+    public boolean placeOrder(String orderDate, double totalPrice,String shippingMethod,String orderStatus, ArrayList<BuyerModel> items) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues orderValues = new ContentValues();
         orderValues.put("order_date", orderDate);
         orderValues.put("total_price", totalPrice);
         orderValues.put("shipping_method",shippingMethod);
+        orderValues.put("order_status",orderStatus);
         long orderId = DB.insert("tblOrder", null, orderValues);
 
         if (orderId == -1) {

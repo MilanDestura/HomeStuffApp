@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +26,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
     int orderId;
     double itemPrice;
     private double totalAmount = 0.0;
+    String selectedShippingMethod;
 
-    private Button btnEditOrder,btnCancelOrder,btnBack;
+    private Button btnEditOrder,btnCancelOrder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +36,31 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
 
         btnEditOrder = findViewById(R.id.btnEditOrder);
         btnCancelOrder = findViewById(R.id.btnDetailsOrderCancel);
-        btnBack = findViewById(R.id.btnOrderDetailsBack);
+        RadioButton rdbOrdDetPickup = findViewById(R.id.rdbOrdDetPickup);
+        RadioButton rdbOrdDetDelivery = findViewById(R.id.rdbOrdDetDelivery);
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        rdbOrdDetPickup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                selectedShippingMethod= "Pick up";
+                dbHelper.updateShippingMethod(orderId,selectedShippingMethod);
             }
-
+        });
+        rdbOrdDetDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedShippingMethod= "Delivery";
+                dbHelper.updateShippingMethod(orderId,selectedShippingMethod);
+            }
         });
 
 
-
+        btnCancelOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelOrder();
+            }
+        });
         btnEditOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,8 +69,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
                     View itemView = orderItemsListView.getChildAt(i);
                     Button deleteButton = itemView.findViewById(R.id.deleteItemButton);
                     deleteButton.setVisibility(View.VISIBLE);
-
                 }
+                rdbOrdDetPickup.setEnabled(true);
+                rdbOrdDetDelivery.setEnabled(true);
 
                 editMode = !editMode; // Toggle edit mode
                 orderItemsAdapter.setEditMode(editMode); // Set edit mode for the adapter
@@ -63,9 +80,12 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
                 Button editOrderButton = findViewById(R.id.btnEditOrder);
                 editOrderButton.setText(editMode ? "Done Editing" : "Edit Order");
 
+                if(editMode==false) {
+                    setResult(RESULT_OK);
+                    finish();
+                }
             }
         });
-
 
         dbHelper = new DBHelper(this);
         orderItemsListView = findViewById(R.id.orderItemsListView);
@@ -88,7 +108,14 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
 
         orderIdTextView.setText("Order ID: " + orderId);
         dateOrdered.setText(oDate);
-        shippingMethodTextView.setText("Shipping Method: " + shippingMethod);
+        shippingMethodTextView.setText("Shipping Method: ");
+
+        if(shippingMethod.contains("Pick up")){
+            rdbOrdDetPickup.setChecked(true);
+        }
+        else{
+            rdbOrdDetDelivery.setChecked(true);
+        }
 
 
         // Fetch order items from the database
@@ -117,8 +144,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
     public void onDeleteButtonClick(BuyerModel item) {
         dbHelper.deleteItemFromOrder(item,orderId);
 
-        Toast.makeText(OrderDetailsActivity.this,item.gettId()+" "+orderId,Toast.LENGTH_SHORT).show();
-        // Then, update the list view and notify the adapter
          orderItemsList.remove(item);
          orderItemsAdapter.notifyDataSetChanged();
         calculateTotalAmount();
@@ -133,4 +158,24 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
         TextView totalAmountTextView =  findViewById(R.id.orderTotalTextView);
         totalAmountTextView.setText("Total Amount: $" + totalAmount);
     }
+
+    private void cancelOrder() {
+        // Update order status to "Cancelled" in the database
+        int orderId = getIntent().getIntExtra("orderId", -1);
+        if (orderId != -1) {
+            boolean updated = dbHelper.updateOrderStatus(orderId, "Cancelled");
+            if (updated) {
+                // Notify user that order has been cancelled
+                Toast.makeText(this, "Order cancelled", Toast.LENGTH_SHORT).show();
+                // Refresh the OrderListActivity ListView
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+            } else {
+                // Notify user of cancellation failure
+                Toast.makeText(this, "Failed to cancel order", Toast.LENGTH_SHORT).show();
+            }
+            finish(); // Finish the activity
+        }
+    }
+
 }

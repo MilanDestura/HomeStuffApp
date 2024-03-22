@@ -18,4 +18,8 @@
     <string name="tvUserName">Username</string>
     <string name="tvUserNameLog">Username</string>
     <string name="tvConfirmPsw">Confirm password</string>
+    <array name="spnrArrShippingMethod">
+        <item>Pick up</item>
+        <item>Delivery</item>
+    </array>
 </resources>

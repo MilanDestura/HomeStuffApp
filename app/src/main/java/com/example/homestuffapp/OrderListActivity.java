@@ -20,6 +20,8 @@ public class OrderListActivity extends AppCompatActivity {
     private ListView orderListView;
     private OrderListAdapter orderListAdapter;
     private ArrayList<OrderModel> orderList;
+    private static final int EDIT_ORDER_REQUEST_CODE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,37 @@ public class OrderListActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this);
         orderListView = findViewById(R.id.orderListView);
 
+        fetchOrderfrmDB();
+
+
+        // Set item click listener
+        orderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected order
+                OrderModel selectedOrder = orderList.get(position);
+
+                // Start OrderDetailsActivity with selected order details
+                Intent intent = new Intent(OrderListActivity.this, OrderDetailsActivity.class);
+                intent.putExtra("orderId", selectedOrder.getOrderId());
+                intent.putExtra("orderDate", selectedOrder.getOrderDate());
+                intent.putExtra("totalPrice", selectedOrder.getTotalPrice());
+                intent.putExtra("shippingMethod", selectedOrder.getShippingMethod());
+                startActivityForResult(intent, EDIT_ORDER_REQUEST_CODE);
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == EDIT_ORDER_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                fetchOrderfrmDB();
+            }
+        }
+    }
+
+    public void fetchOrderfrmDB(){
         // Fetch orders from the database
         orderList = new ArrayList<>();
         Cursor cursor = dbHelper.getAllOrdersCursor();
@@ -53,23 +86,5 @@ public class OrderListActivity extends AppCompatActivity {
         // Set up the adapter for the ListView
         orderListAdapter = new OrderListAdapter(this, orderList);
         orderListView.setAdapter(orderListAdapter);
-
-
-        // Set item click listener
-        orderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Get the selected order
-                OrderModel selectedOrder = orderList.get(position);
-
-                // Start OrderDetailsActivity with selected order details
-                Intent intent = new Intent(OrderListActivity.this, OrderDetailsActivity.class);
-                intent.putExtra("orderId", selectedOrder.getOrderId());
-                intent.putExtra("orderDate", selectedOrder.getOrderDate());
-                intent.putExtra("totalPrice", selectedOrder.getTotalPrice());
-                intent.putExtra("shippingMethod", selectedOrder.getShippingMethod());
-                startActivity(intent);
-            }
-        });
     }
 }

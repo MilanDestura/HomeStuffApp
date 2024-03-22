@@ -37,18 +37,6 @@
         app:layout_constraintTop_toBottomOf="@+id/btnEditOrder"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/btnOrderDetailsBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:backgroundTint="#CCFFFF"
-        android:text="BACK"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditOrder"
-        app:layout_constraintVertical_bias="0.807" />
-
     <ListView
         android:id="@+id/orderItemsListView"
         android:layout_width="367dp"
@@ -108,9 +96,37 @@
         android:layout_below="@id/orderTotalTextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orderDateTextView"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.014" />
+
+    <RadioGroup
+        android:layout_width="187dp"
+        android:layout_height="31dp"
+        android:orientation="horizontal"
+
+        app:layout_constraintBottom_toTopOf="@+id/orderItemsListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toEndOf="@+id/shippingMethodTextView"
+        app:layout_constraintTop_toBottomOf="@+id/orderDateTextView"
+        app:layout_constraintVertical_bias="0.153"
+        >
+
+        <RadioButton
+            android:id="@+id/rdbOrdDetPickup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Pick up" />
+
+        <RadioButton
+            android:id="@+id/rdbOrdDetDelivery"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Delivery" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
