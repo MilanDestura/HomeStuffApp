@@ -29,7 +29,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "phone TEXT, " +
                 "address TEXT, " +
                 "username TEXT, " +
-                "password TEXT)");
+                "password TEXT, " +
+                "confirmPassword TEXT)");
 
         DB.execSQL("create Table tblItem(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT , " +
                 "description TEXT, " +
