@@ -39,8 +39,6 @@ public class BuyerModel {
         return imgId;
     }
 
-
-
     public BuyerModel(int t0,String t1, String t2,String t3, Double t4, Bitmap tId){
         this.tId =t0;
         this.tName = t1;
@@ -59,8 +57,5 @@ public class BuyerModel {
         this.tSeller = t5;
         this.imgId=tId;
     }
-
-
-
 
 }

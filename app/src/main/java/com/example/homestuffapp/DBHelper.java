@@ -105,6 +105,18 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateOrderTotalPrice(int orderId,Double tPrice) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        String whereClause = "id=?";
+        String[] whereArgs = {String.valueOf(orderId)};
+        values.put("total_price", tPrice);
+
+
+        int rowsAffected = db.update("tblOrder", values, whereClause, whereArgs);
+        db.close();
+    }
+
     public boolean signupUser(String firstName, String lastName, String email, String phone, String address,
                               String userName, String password, String confirmPassword){
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -196,7 +208,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return true;
     }
-
     public void deleteItemFromOrder(BuyerModel item,int OrdId) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Assuming you have a table named "OrderItem" with columns "order_id" and "item_id"
@@ -205,6 +216,4 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(OrdId), String.valueOf(item.gettId()) });
         db.close();
     }
-
 }
-

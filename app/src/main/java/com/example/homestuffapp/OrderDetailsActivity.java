@@ -25,9 +25,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
     private boolean editMode = false;
     int orderId;
     double itemPrice;
-    private double totalAmount = 0.0;
+     double totalAmount = 0.0;
     String selectedShippingMethod;
-
     private Button btnEditOrder,btnCancelOrder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +53,13 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
             }
         });
 
-
         btnCancelOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cancelOrder();
             }
         });
+
         btnEditOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +78,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
                 // Change the text of the button based on edit mode
                 Button editOrderButton = findViewById(R.id.btnEditOrder);
                 editOrderButton.setText(editMode ? "Done Editing" : "Edit Order");
-
+                dbHelper.updateOrderTotalPrice(orderId,totalAmount);
                 if(editMode==false) {
                     setResult(RESULT_OK);
                     finish();
@@ -89,8 +88,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
 
         dbHelper = new DBHelper(this);
         orderItemsListView = findViewById(R.id.orderItemsListView);
-
-
 
         // Fetch order details from the database
         Intent intent = getIntent();
@@ -116,7 +113,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
         else{
             rdbOrdDetDelivery.setChecked(true);
         }
-
 
         // Fetch order items from the database
         orderItemsList = new ArrayList<>();
@@ -177,5 +173,4 @@ public class OrderDetailsActivity extends AppCompatActivity implements OrderItem
             finish(); // Finish the activity
         }
     }
-
 }

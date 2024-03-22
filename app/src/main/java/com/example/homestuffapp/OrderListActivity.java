@@ -33,7 +33,6 @@ public class OrderListActivity extends AppCompatActivity {
 
         fetchOrderfrmDB();
 
-
         // Set item click listener
         orderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -82,7 +81,6 @@ public class OrderListActivity extends AppCompatActivity {
             // Handle case where there are no orders
             Toast.makeText(this, "No orders found.", Toast.LENGTH_SHORT).show();
         }
-
         // Set up the adapter for the ListView
         orderListAdapter = new OrderListAdapter(this, orderList);
         orderListView.setAdapter(orderListAdapter);
