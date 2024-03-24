@@ -61,6 +61,13 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        cmdOrderHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent orderHistoryIntent = new Intent(MenuActivity.this, OrderHistoryActivity.class);
+                startActivity(orderHistoryIntent);
+            }
+        });
         cmdExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
