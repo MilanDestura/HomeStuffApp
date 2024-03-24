@@ -21,6 +21,8 @@ public class ShippingMethodActivity extends AppCompatActivity {
     private String shippingMethod;
     private String orderStatus="Placed";
 
+    private String buyer="Buyer";
+
     RadioButton rdbDelivery;
     RadioButton rdbPickup;
 
@@ -66,7 +68,7 @@ public class ShippingMethodActivity extends AppCompatActivity {
         ArrayList<BuyerModel> cartItems = cartManager.getCartItems();
 
         // Place the order
-        boolean success = dbHelper.placeOrder(orderDate, totalPrice,shippingMethod,orderStatus, cartItems);
+        boolean success = dbHelper.placeOrder(orderDate, totalPrice,shippingMethod,orderStatus,buyer, cartItems);
         if (success) {
             // Order placed successfully, clear the cart or perform any other action
             cartManager.clearCart();

@@ -44,7 +44,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "order_date TEXT, " +
                 "total_price DECIMAL, " +
                 "shipping_method TEXT,"+
-                "order_status TEXT)");
+                "order_status TEXT,"+
+                "buyer TEXT)");
 
         DB.execSQL("create Table tblOrderItem(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -182,13 +183,14 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean placeOrder(String orderDate, double totalPrice,String shippingMethod,String orderStatus, ArrayList<BuyerModel> items) {
+    public boolean placeOrder(String orderDate, double totalPrice,String shippingMethod,String orderStatus, String buyer,ArrayList<BuyerModel> items) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues orderValues = new ContentValues();
         orderValues.put("order_date", orderDate);
         orderValues.put("total_price", totalPrice);
         orderValues.put("shipping_method",shippingMethod);
         orderValues.put("order_status",orderStatus);
+        orderValues.put("buyer",buyer);
         long orderId = DB.insert("tblOrder", null, orderValues);
 
         if (orderId == -1) {
