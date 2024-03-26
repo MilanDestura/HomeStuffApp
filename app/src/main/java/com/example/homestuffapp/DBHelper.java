@@ -21,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create table tblUsers(" +
+        DB.execSQL("create Table tblUsers(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "first_name TEXT, " +
                 "last_name TEXT, " +
@@ -59,8 +59,35 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int i1) {
         DB.execSQL("Drop Table IF exists tblItem");
+        //DB.execSQL("DROP TABLE IF EXISTS tblUsers");
+        //onCreate(DB);
 
     }
+
+    public boolean updateUserProfile(String firstName, String lastName, String email, String phone, String address,
+                                     String userName, String password, long userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("first_name", firstName);
+        values.put("last_name", lastName);
+        values.put("email", email);
+        values.put("phone", phone);
+        values.put("address", address);
+        values.put("username", userName);
+        values.put("password", password);
+
+        // Define the WHERE clause to update a specific user based on their ID
+        String whereClause = "id=?";
+        String[] whereArgs = {String.valueOf(userId)};
+
+        // Update the user profile in the database
+        int rowsAffected = db.update("tblUsers", values, whereClause, whereArgs);
+        db.close();
+
+        // Return true if the update was successful, false otherwise
+        return rowsAffected > 0;
+    }
+
 
     public Cursor getData(){
         SQLiteDatabase DB = this.getWritableDatabase();
@@ -118,44 +145,44 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public boolean signupUser(String firstName, String lastName, String email, String phone, String address,
+    public long signupUser(String firstName, String lastName, String email, String phone, String address,
                               String userName, String password, String confirmPassword){
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put("firstName", firstName);
-        contentValues.put("lastName", lastName);
+        contentValues.put("first_name", firstName);
+        contentValues.put("last_name", lastName);
         contentValues.put("email", email);
         contentValues.put("phone", phone);
         contentValues.put("address", address);
-        contentValues.put("userName", userName);
+        contentValues.put("username", userName);
         contentValues.put("password", password);
         contentValues.put("confirmPassword", confirmPassword);
-        long result = DB.insert("tblUsers", null, contentValues);
-        if(result==-1){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return DB.insert("tblUsers", null, contentValues);
+
     }
 
     public  boolean checkUsername(String username){
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("select * from signupUsers where username = ?", new String[]{username});
+        Cursor cursor = DB.rawQuery("select * from tblUsers where username = ?", new String[]{username});
         if (cursor.getCount() > 0)
             return true;
         else
             return false;
     }
 
-    public  boolean checkUser(String username, String password){
+    public long checkUser(String username, String password){
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("select * from signupUsers where username = ?", new String[]{username, password});
-        if (cursor.getCount() > 0)
-            return true;
-        else
-            return false;
+        Cursor cursor = DB.rawQuery("select id from tblUsers where username = ? and password = ?", new String[]{username, password});
+        if (cursor.getCount() > 0) {
+
+            cursor.moveToFirst();
+
+            return cursor.getLong(0);
+
+
+        }else
+            return -1;
     }
 
     public boolean insertItemToDB(String name, String desc,String lType,Double price,String sName, Bitmap img){

@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class MenuActivity extends AppCompatActivity {
 
-    Button cmdBuyer,cmdSeller,cmdCart,cmdOrderDetails,cmdOrderStatus, cmdOrderHistory, cmdExit;
+    long userId;
+
+    Button cmdBuyer,cmdSeller,cmdCart,cmdOrderDetails,cmdOrderStatus, cmdOrderHistory, cmdExit, cmdProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,15 +20,31 @@ public class MenuActivity extends AppCompatActivity {
         cmdBuyer = findViewById(R.id.btnBuyer);
         cmdSeller = findViewById(R.id.btnSeller);
         cmdCart = findViewById(R.id.btnCart);
+        cmdProfile = findViewById(R.id.btnProfile);
         cmdOrderDetails = findViewById(R.id.btnOrderDetails);
         cmdExit = findViewById(R.id.btnExit);
         cmdOrderStatus = findViewById(R.id.btnOrderStatus);
         cmdOrderHistory = findViewById(R.id.btnOrderHistory);
+        Intent i = getIntent();
+        userId = i.getLongExtra("userId", -1);
+
+        Log.e("teste", "usuario carregado " + userId);
+
         cmdBuyer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent buyerIntent = new Intent(MenuActivity.this, BuyerActivity.class);
                 startActivity(buyerIntent);
+            }
+        });
+
+        cmdProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ProfileIntent = new Intent(MenuActivity.this, ProfileActivity.class);
+                ProfileIntent.putExtra("id", userId);
+                Log.e("teste", "user id menu " + userId);
+                startActivity(ProfileIntent);
             }
         });
 

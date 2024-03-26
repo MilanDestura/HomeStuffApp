@@ -10,6 +10,7 @@
     <string name="tvSignUpRedirectText">Not yet registered? Sign up.</string>
     <string name="btLogin">Login</string>
     <string name="btSignUp">Sign Up</string>
+    <string name="btUpdate">Update</string>
     <string name="tvLoginRedirectText">Already an user? Login</string>
     <string name="tvFirstName">First Name</string>
     <string name="tvLastName">Last Name</string>

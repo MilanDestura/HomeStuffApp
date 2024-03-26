@@ -2,6 +2,7 @@ package com.example.homestuffapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -31,9 +32,11 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isLoggedId = dbHelper.checkUser(loginUsername.getText().toString().trim(), loginPassword.getText().toString().trim());
-                if (isLoggedId){
+                long isLoggedId = dbHelper.checkUser(loginUsername.getText().toString().trim(), loginPassword.getText().toString().trim());
+                if (isLoggedId > 0){
                      Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                     intent.putExtra("userId",isLoggedId);
+                     Log.e("teste", "usuario logado " + isLoggedId);
                      startActivity(intent);
                 }
                 else {

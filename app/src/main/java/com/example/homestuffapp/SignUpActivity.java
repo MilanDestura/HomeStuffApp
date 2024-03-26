@@ -2,6 +2,7 @@ package com.example.homestuffapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,9 +79,14 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
+                long userId = new DBHelper(SignUpActivity.this).signupUser(firstName, lastName, email, phone, address, username, pass, rePsw);
+                Intent intent = new Intent(SignUpActivity.this, MenuActivity.class);
+                intent.putExtra("userId", userId);
+                Log.e("userId", userId + "");
+
                 // Simulate successful sign-up
-                Toast.makeText(SignUpActivity.this, "Sign up successful", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SignUpActivity.this, MenuActivity.class));
+                Toast.makeText(SignUpActivity.this, "Sign up successful" + userId, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
             }
         });
 
