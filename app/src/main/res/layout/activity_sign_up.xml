@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@color/teal_200"
+        android:background="#123B5A"
         android:orientation="vertical"
         tools:context=".SignUpActivity">
 
@@ -181,7 +181,7 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/lavender"
-                    android:backgroundTint="@color/lavender"
+                    android:backgroundTint="#123B5A"
                     android:gravity="center"
                     android:text="@string/btSignUp"
                     android:textColor="@color/white"
