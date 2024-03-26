@@ -82,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                 long userId = new DBHelper(SignUpActivity.this).signupUser(firstName, lastName, email, phone, address, username, pass, rePsw);
                 Intent intent = new Intent(SignUpActivity.this, MenuActivity.class);
                 intent.putExtra("userId", userId);
-                Log.e("userId", userId + "");
+                Log.e("userId", userId + ""); // for debugging purpose
 
                 // Simulate successful sign-up
                 Toast.makeText(SignUpActivity.this, "Sign up successful" + userId, Toast.LENGTH_SHORT).show();
