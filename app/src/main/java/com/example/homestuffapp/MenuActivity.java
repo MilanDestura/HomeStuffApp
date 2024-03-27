@@ -28,7 +28,7 @@ public class MenuActivity extends AppCompatActivity {
         Intent i = getIntent();
         userId = i.getLongExtra("userId", -1);
 
-        Log.e("teste", "usuario carregado " + userId);
+        //Log.e("teste", "usuario carregado " + userId);
 
         cmdBuyer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent ProfileIntent = new Intent(MenuActivity.this, ProfileActivity.class);
                 ProfileIntent.putExtra("id", userId);
-                Log.e("teste", "user id menu " + userId);
+                //Log.e("teste", "user id menu " + userId);
                 startActivity(ProfileIntent);
             }
         });

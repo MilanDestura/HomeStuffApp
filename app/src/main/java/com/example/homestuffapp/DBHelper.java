@@ -59,12 +59,21 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase DB, int i, int i1) {
         DB.execSQL("Drop Table IF exists tblItem");
-        //DB.execSQL("DROP TABLE IF EXISTS tblUsers");
-        //onCreate(DB);
 
     }
 
-    public boolean updateUserProfile(String firstName, String lastName, String email, String phone, String address,
+    public Cursor getUserProfile(long userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"first_name", "last_name", "email",
+                "phone", "address", "username", "password"};
+        String selection = "id=?";
+        String[] selectionArgs = {String.valueOf(userId)};
+        return db.query("tblUsers", projection, selection,
+                selectionArgs, null, null, null);
+    }
+
+    public boolean updateUserProfile(String firstName, String lastName,
+                                     String email, String phone, String address,
                                      String userName, String password, long userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -88,7 +97,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return rowsAffected > 0;
     }
 
-
     public Cursor getData(){
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from tblItem ",null);
@@ -108,7 +116,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getAllOrdersCursor() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM tblOrder where order_status ='Placed' ", null);
+        return db.rawQuery("SELECT * FROM tblOrder where " +
+                "order_status ='Placed' ", null);
     }
 
     public boolean updateOrderStatus(int orderId, String status) {
@@ -145,8 +154,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public long signupUser(String firstName, String lastName, String email, String phone, String address,
-                              String userName, String password, String confirmPassword){
+    public long signupUser(String firstName, String lastName, String email,
+                           String phone, String address,
+                           String userName, String password, String confirmPassword){
+
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -164,7 +175,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public  boolean checkUsername(String username){
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("select * from tblUsers where username = ?", new String[]{username});
+        Cursor cursor = DB.rawQuery("select * from tblUsers where username = ?",
+                new String[]{username});
         if (cursor.getCount() > 0)
             return true;
         else
@@ -173,14 +185,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public long checkUser(String username, String password){
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("select id from tblUsers where username = ? and password = ?", new String[]{username, password});
+        Cursor cursor = DB.rawQuery("select id from tblUsers where username = ? and " +
+                "password = ?", new String[]{username, password});
         if (cursor.getCount() > 0) {
-
             cursor.moveToFirst();
-
             return cursor.getLong(0);
-
-
         }else
             return -1;
     }

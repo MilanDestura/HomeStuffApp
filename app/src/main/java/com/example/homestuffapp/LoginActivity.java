@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (isLoggedId > 0){
                      Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                      intent.putExtra("userId",isLoggedId);
-                     Log.e("test", "user is logged " + isLoggedId);
+                     //Log.e("test", "user is logged " + isLoggedId);
                      startActivity(intent);
                 }
                 else {
