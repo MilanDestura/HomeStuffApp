@@ -36,6 +36,7 @@ public class SellerActivity extends AppCompatActivity {
 
     Bitmap mbitmap;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,9 @@ public class SellerActivity extends AppCompatActivity {
         mbitmap = BitmapFactory.decodeResource(getResources(), R.drawable.homestufflogo);
         dbHelper = new DBHelper(this);
 
+
+        Intent i = getIntent();
+        sellerName = i.getStringExtra("userName");
 
         Button selectImageButton = findViewById(R.id.selectImageButton);
         selectImageButton.setOnClickListener(new View.OnClickListener() {

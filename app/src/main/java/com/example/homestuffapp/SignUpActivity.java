@@ -86,7 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 // Simulate successful sign-up
                 Toast.makeText(SignUpActivity.this, "Sign up successful" + userId, Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+               // startActivity(intent);
             }
         });
 

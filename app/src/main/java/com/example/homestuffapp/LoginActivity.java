@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText loginUsername, loginPassword;
     private Button loginButton;
     private TextView signupRedirectText;
+    private String uName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                long isLoggedId = dbHelper.checkUser(loginUsername.getText().toString().trim(), loginPassword.getText().toString().trim());
+                uName = loginUsername.getText().toString().trim();
+                long isLoggedId = dbHelper.checkUser(uName, loginPassword.getText().toString().trim());
                 if (isLoggedId > 0){
                      Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                      intent.putExtra("userId",isLoggedId);
+                     intent.putExtra("userName",uName);
                      //Log.e("test", "user is logged " + isLoggedId);
-                     startActivity(intent);
+                    Toast.makeText(LoginActivity.this, "Login Succesful", Toast.LENGTH_LONG).show();
+                    finish();
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();

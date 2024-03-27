@@ -11,6 +11,7 @@ import android.widget.Button;
 public class MenuActivity extends AppCompatActivity {
 
     long userId;
+    String userName;
 
     Button cmdBuyer,cmdSeller,cmdCart,cmdOrderDetails,cmdOrderStatus, cmdOrderHistory, cmdExit, cmdProfile;
     @Override
@@ -27,6 +28,9 @@ public class MenuActivity extends AppCompatActivity {
         cmdOrderHistory = findViewById(R.id.btnOrderHistory);
         Intent i = getIntent();
         userId = i.getLongExtra("userId", -1);
+        userName = i.getStringExtra("userName");
+
+
 
         //Log.e("teste", "usuario carregado " + userId);
 
@@ -60,6 +64,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent sellerIntent = new Intent(MenuActivity.this, SellerActivity.class);
+                sellerIntent.putExtra("userName",userName);
                 startActivity(sellerIntent);
             }
         });
